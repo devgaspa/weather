@@ -1,80 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Weather</title>
-	<!-- Font Roboto -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<!-- Application CSS -->
-	<link rel="stylesheet" href="style.css" type="text/css"> </head>
-	<!-- Polyfill for JS navigation -->
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-	<!-- Font Awesome -->
-	<script src="https://use.fontawesome.com/8fb9164228.js"></script>
-<body class="day">
-	<div class="container-fluid fill">
-		<div class="row fill">
-			<div class="col-12 text-center text-white">
-				<div class="location-info">
-					<h2 id="location-info">Maringá <small>Paraná, Brazil</small></h2>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Weather</title>
+		<!-- Font Roboto/ Font Baloo -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<!-- Application CSS -->
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<!-- Polyfill for JS navigation -->
+		<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+		<!-- Font Awesome -->
+		<script src="https://use.fontawesome.com/8fb9164228.js"></script>
+	</head>
+	<body class="day">
+		<div class="splashscreen"></div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<canvas id="clearDay" class="icon-weather"></canvas>
+					<canvas id="clearNight" class="icon-weather"></canvas>
+					<canvas id="partlyCloudyDay" class="icon-weather"></canvas>
+					<canvas id="partlyCloudyNight" class="icon-weather"></canvas>
+					<canvas id="cloudy" class="icon-weather"></canvas>
+					<canvas id="rain" class="icon-weather"></canvas>
+					<canvas id="sleet" class="icon-weather"></canvas>
+					<canvas id="snow" class="icon-weather"></canvas>
+					<canvas id="wind" class="icon-weather"></canvas>
+					<canvas id="fog" class="icon-weather"></canvas>
 				</div>
-				<div class="weather-info mt-5">
-					<h1 id="temperature">20ºc</h1>
-					<div>
-						<label class="custom-control custom-radio">
-							<input id="radioFahrenheit" name="radio" type="radio" class="custom-control-input">
-							<span class="custom-control-indicator"></span>
-							<span class="custom-control-description">Fahrenheit</span>
-						</label>
-						<label class="custom-control custom-radio">
-							<input id="radioCelcius" name="radio" type="radio" class="custom-control-input" checked>
-							<span class="custom-control-indicator"></span>
-							<span class="custom-control-description">Celcius</span>
-						</label>
+				<div class="col-12 text-center text-white location-text mb-5" id="locationInfo">
+					City, State, Country
+				</div>
+				<div class="col-12 text-center text-white degree-text" id="degree">
+					0°
+				</div>
+				<div class="col-12 mt-4">
+					<div class="btn-toolbar justify-content-center">
+						<div class="btn-group btn-group-sm" data-toggle="buttons">
+							<label class="btn btn-primary active">
+								<input type="radio" name="temperature" id="fahrenheit" autocomplete="off" checked>Fahrenheit
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="options" id="celsius" autocomplete="off">Celsius
+							</label>
+						</div>
 					</div>
-					<div class="mt-5">
-						<img src="" id="icon-weather">
-					</div>
+				</div>
+				<div class="col-12 text-white my-5">
+					<button class="btn btn-outline-success mx-auto" style="display: block;" onClick="window.location.reload();"><i class="fa fa-refresh" aria-hidden="true"></i></button>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- Get Location Modal -->
-	<div class="modal fade bd-example-modal-lg" id="getLocation" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-body" id="modalBody">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-12">
-								<h5 class="text-center m-2 mb-4">Inform your location.</h5>
-								<div class="input-group m-2">
-									<input type="text" class="form-control" id="cityName" placeholder="Enter city name" value="Maringá" required>
-									<span class="input-group-btn">
-										<button class="btn btn-primary" type="button" id="citySearch"><i class="fa fa-search" aria-hidden="true"></i></button>
-									</span>
+		<footer class="fixed-bottom text-center bg-faded footer">
+			<p class="mt-2">A <a href="https://www.freecodecamp.com/" target="_blank" alt="freecodecamp">freeCodeCamp Project</a> - Created by <a href="https://www.freecodecamp.com/devgaspa" target="_blank" alt="Lucas Fontes Gaspareto">Me</a>.</p>
+		</footer>
+		<!-- Get Location Modal -->
+		<div class="modal fade bd-example-modal-lg" id="getLocation" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-body" id="modalBody">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12">
+									<h5 class="text-center m-2 mb-4">Inform your location.</h5>
+									<div class="input-group m-2">
+										<input type="text" class="form-control" id="cityName" placeholder="Enter city name" value="Maringá" required>
+										<span class="input-group-btn">
+											<button class="btn btn-primary" type="button" id="citySearch"><i class="fa fa-search" aria-hidden="true"></i></button>
+										</span>
+									</div>
+									<strong class="or-text">OR</strong>
+									<button type="button" id="geoNavigator" class="btn btn-primary btn-block m-2"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
 								</div>
-								<strong class="or-text">OR</strong>
-								<button type="button" id="geoNavigator" class="btn btn-primary btn-block m-2"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- jQuery first, then Tether, then Bootstrap JS, then HammerJS. -->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<!-- <script src="https://hammerjs.github.io/dist/hammer.min.js"></script> -->
-	<!-- Application JS -->
-	<script src="app.js"></script>
-</body>
-
+		<!-- jQuery first, then Tether, then Bootstrap JS, then HammerJS. -->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<!-- skycons -->
+		<script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
+		<!-- Application JS -->
+		<script src="app.js"></script>
+	</body>
 </html>
