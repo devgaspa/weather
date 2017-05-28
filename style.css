@@ -10,18 +10,42 @@ html, body {
 	background-color: #263238;
 }
 
-.fill { 
-	min-height: 100%;
-	height: 100%;
-	margin-top: 60px;
-}
-
 .or-text {
 	display: block;
 	margin: 0px auto;
 	width: 8px;
 }
 
-.location-info small {
-	font-size: 60%;
+.degree-text {
+	font-family: 'Baloo', cursive;
+	font-size: 3rem;
+}
+
+.icon-weather {
+    display: none;
+    margin: 60px auto 0px;
+    width: 200px;
+}
+
+.icon-weather.active {
+	display: block;
+}
+
+.location-text {
+	font-size: 1rem;
+}
+
+.splashscreen {
+	background-color: #81d4fa;
+
+	position: absolute;
+
+	height: 100%;
+	width: 100%;
+
+	z-index: 1000;
+}
+
+.footer {
+	
 }
