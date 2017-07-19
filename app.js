@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var urlIconWeatherRunLocked = 'http://www.weatherunlocked.com/Images/icons/2/';
+	var urlIconWeatherRunLocked = 'https://www.weatherunlocked.com/Images/icons/2/';
 
 	$(document).on('change', '[data-toggle^="buttons"]', function(e) {
 		if ('celsius' === e.target.id) {
@@ -131,10 +131,10 @@ $(document).ready(function() {
 	};
 
 	var getWeather = function(lat, lng) {
-		var urlMyWeather2 = 'http://www.myweather2.com/developer/forecast.ashx?uac=mR9rVt3eKr&output=json&query=' + lat + ',' + lng,
-			urlWunderground = 'http://api.wunderground.com/api/Your_Key/geolookup/q/' + lat + ',' + lng + '.json',
-			urlOpenWeatherMap = 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lng + '&appid=e144707097a4f86da75f46f2dd83c3c3',
-			urlWeatherRunLocked = 'http://api.weatherunlocked.com/api/current/' + lat + ',' + lng + '?app_id=8209d1dc&app_key=306293331a8b4d2ffff84c8a3f8c0013';
+		var urlMyWeather2 = 'https://www.myweather2.com/developer/forecast.ashx?uac=mR9rVt3eKr&output=json&query=' + lat + ',' + lng,
+			urlWunderground = 'https://api.wunderground.com/api/Your_Key/geolookup/q/' + lat + ',' + lng + '.json',
+			urlOpenWeatherMap = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lng + '&appid=e144707097a4f86da75f46f2dd83c3c3',
+			urlWeatherRunLocked = 'https://api.weatherunlocked.com/api/current/' + lat + ',' + lng + '?app_id=8209d1dc&app_key=306293331a8b4d2ffff84c8a3f8c0013';
 
 		$.ajax({
 			headers: {
